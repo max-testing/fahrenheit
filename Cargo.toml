@@ -1,0 +1,6 @@
+[package]
+name = "fahrenheit"
+version = "0.1.0"
+authors = ["also me <me@myself>"]
+
+[dependencies]
