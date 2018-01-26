@@ -7,10 +7,10 @@ fn main() {
     println!("Convert temparatures!");
     
     loop{
-        println!("Enter Fahrenheight:");
-
+        println!("Enter Number of Degrees:");
+        
         let mut temperature = String::new();
-
+        
         io::stdin().read_line(&mut temperature)
             .expect("Failed to read line");
 
@@ -19,11 +19,22 @@ fn main() {
             Err(_) => continue,
         };
         
-        println!("current temperature: {}", temperature);
-    
-        let converted_temperature = (temperature - 32) * 5/9;
+        println!("in F or C?");
+        
+        let mut measurement = String::new();
+        
+        io::stdin().read_line(&mut measurement)
+            .expect("Failed to read line");
 
-        println!("that's {} in celsius!", converted_temperature);
+        println!("current temperature: {} degrees {}", temperature, measurement);
+        
+        let converted_temperature = if measurement == "F" {
+            (temperature - 32) * 5/9
+        } else {
+            (temperature * 9/5) + 32
+        };
+
+        println!("that's {} in {}", converted_temperature, measurement);
         break;
     }
 }
