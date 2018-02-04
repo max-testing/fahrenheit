@@ -14,7 +14,7 @@ fn main() {
         io::stdin().read_line(&mut temperature)
             .expect("Failed to read line");
 
-        let temperature: u32 = match temperature.trim().parse() {
+        let temperature: i32 = match temperature.trim().parse() {
             Ok(num) => num,
             Err(_) => continue,
         };
@@ -27,14 +27,13 @@ fn main() {
             .expect("Failed to read line");
 
         println!("current temperature: {} degrees {}", temperature, measurement);
-        
-        let converted_temperature = if measurement == "F" {
-            (temperature - 32) * 5/9
-        } else {
-            (temperature * 9/5) + 32
-        };
+        let converted_temperature: i32 = if measurement.trim() == "F" {
+                (temperature - 32) * 5/9
+            } else {
+                (temperature * 9/5) + 32
+            };
 
-        println!("that's {} in {}", converted_temperature, measurement);
+        println!("when converted, that's {} degrees", converted_temperature);
         break;
     }
 }
