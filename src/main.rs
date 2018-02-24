@@ -26,15 +26,18 @@ fn main() {
         io::stdin().read_line(&mut measurement)
             .expect("Failed to read line");
 
-        println!("current temperature: {} degrees {}", temperature, measurement);
-        let converted_temperature: i32 = if measurement.trim() == "F" {
-                (temperature - 32) * 5/9
-            } else {
-                (temperature * 9/5) + 32
-            };
-
-        println!("when converted, that's {} degrees", converted_temperature);
-        break;
+        match measurement.trim() {
+            "F" => {
+                println!("current temperature: {} degrees {}", temperature, measurement);
+                println!("when converted, that's {} degrees",( (temperature - 32) * 5/9));
+                break;
+            },
+            "C" => {
+                println!("current temperature: {} degrees {}", temperature, measurement);
+                println!("when converted, that's {} degrees", ( (temperature * 9/5) + 32));
+                break;
+            },
+            _ => continue,
+        }
     }
 }
-
